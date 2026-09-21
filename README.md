@@ -68,3 +68,4 @@ server/api/         REST API endpoints
 server/utils/       Authentication and database utilities
 assets/             Application styles
 public/             Static assets and icons
+```
