@@ -1,85 +1,70 @@
-# AI Dialogue System
+# TalkMate AI
 
-Nuxt 3 project for the topic: **Razvoj sistemov dialoga (umetna inteligenca – AI)**.
+TalkMate AI is a personal full-stack AI dialogue system built with Nuxt, MongoDB, OpenAI and Ollama.
 
-It demonstrates two AI integration methods:
+The application allows users to create an account, log in, select an AI provider and maintain persistent conversations with either a cloud-based OpenAI model or a locally hosted Ollama model.
 
-1. **Ollama local model** – local AI inference.
-2. **OpenAI API model** – cloud/API AI inference.
+## Live Demo
 
-Users must log in before opening models. Conversations are saved in MongoDB and separated by provider: `ollama` and `openai`.
+http://178.170.13.19:8003
 
-## Requirements
+## Features
 
-- Node.js 20+
-- MongoDB running locally or remotely
-- Optional: Ollama running locally
-- Optional: OpenAI API key
+- User registration and login
+- JWT-based authentication
+- Protected application routes
+- OpenAI API integration
+- Local Ollama AI integration
+- AI provider selection
+- Persistent conversation history
+- Multiple conversations per user
+- Conversation deletion
+- MongoDB storage for users, conversations and messages
+- REST API backend
+- AI provider availability/status checking
 
-## Install
+## Technologies
 
-```bash
-npm install
-cp .env.example .env
-```
+### Frontend
+- Nuxt
+- Vue.js
+- JavaScript / TypeScript
+- Tailwind CSS
 
-Edit `.env`.
+### Backend
+- Nuxt Server API
+- Node.js
+- REST APIs
+- MongoDB
+- JWT authentication
+- bcrypt password hashing
 
-## Start MongoDB
+### AI
+- OpenAI API
+- Ollama
+- Local and cloud AI models
 
-CentOS example:
+## Architecture
 
-```bash
-sudo systemctl start mongod
-sudo systemctl status mongod
-```
+The application supports two different AI integration approaches:
 
-## Start Ollama
+**OpenAI**
+- Cloud-based AI model
+- Requests are sent through the OpenAI API
 
-```bash
-ollama serve
-ollama pull llama3.2
-```
+**Ollama**
+- Locally hosted AI model
+- AI inference runs on the local/server environment
 
-## Start Nuxt
+MongoDB is used to store users, conversations and message history.
 
-```bash
-npm run dev
-```
-
-Open:
+## Project Structure
 
 ```text
-http://localhost:3000
-```
-
-Inside VirtualBox NAT, add port forwarding:
-
-- Host 3000 → Guest 3000
-- Host 11434 → Guest 11434 only if needed from host, not required for this app if Ollama runs inside VM.
-
-## Project pages
-
-- `/` home
-- `/login` login/register
-- `/models` protected model selection page
-- `/chat/ollama` protected chat with Ollama
-- `/chat/openai` protected chat with OpenAI
-
-## REST API endpoints
-
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `GET /api/chat/conversations?provider=ollama|openai`
-- `GET /api/chat/messages?conversationId=...`
-- `POST /api/chat/send`
-
-## MongoDB collections
-
-- `users`
-- `conversations`
-- `messages`
-
-## Defense explanation
-
-This project is a web-based dialogue system. It uses Nuxt as the frontend and REST API backend, MongoDB for user and conversation persistence, and two different AI model integration methods. Ollama demonstrates local model execution, while OpenAI demonstrates cloud API model execution. The database is not the AI model; it stores users, chats, and message history.
+pages/              Application pages and chat interface
+composables/        Reusable frontend logic
+middleware/         Route authentication
+server/api/         REST API endpoints
+server/utils/       Authentication and database utilities
+assets/             Application styles
+public/             Static assets and icons
